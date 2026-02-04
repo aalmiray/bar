@@ -9,3 +9,13 @@ release {
     newVersionCommitMessage = '[release] - new version commit: '
     tagTemplate = 'v${version}'
 }
+
+tasks.register('hello') {
+    doLast {
+        println '===================='
+        println 'Hello from the build'
+        println '===================='
+    }
+}
+
+afterReleaseBuild.dependsOn tasks.hello
