@@ -25,3 +25,20 @@ tasks.register('hello') {
 
 // afterReleaseBuild.dependsOn tasks.hello
 pushRelease.finalizedBy tasks.hello
+
+tasks.register('commitRelease') {
+    dependsOn('writeReleaseVersion', 'commitReleaseVersion', 'pushRelease')
+}
+/*
+
+    writeReleaseVersion: This task writes the release version to your version file.
+    commitReleaseVersion: This task will create a commit tagged with the release version.
+    pushRelease: This task will perform the push operation.
+    writePostReleaseVersion: This task with write the post release version to your version file.
+    commitPostReleaseVersion: This task will commit the post release version. This commit will not be tagged.
+    pushPostRelease: This task will push the post release version.
+
+ */
+tasks.register('commitDevelopment') {
+    dependsOn('writePostReleaseVersion', 'commitPostReleaseVersion', 'pushPostRelease')
+}
