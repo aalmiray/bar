@@ -39,7 +39,7 @@ tasks.register('jreleaser', Exec) {
     commandLine 'jreleaser', 'release'
 
     doFirst {
-        v = Version.fromPropertiesFile(layout.projectDirectory.file("gradle.properties"))
+        v = Version.fromPropertiesFile(layout.projectDirectory.file("gradle.properties").getAsFile())
         environment.JRELEASER_PROJECT_VERSION = v
     }
 }
