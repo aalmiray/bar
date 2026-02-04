@@ -26,6 +26,8 @@ tasks.register('hello') {
 tasks.register('jreleaser', Exec) {
     workingDir '.'
 
+    environment = [JRELEASER_PROJECT_VERSION: version]
+
     //on windows:
     commandLine 'jreleaser.cmd', 'release'
 
