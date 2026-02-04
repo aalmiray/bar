@@ -1,0 +1,11 @@
+plugins {
+    id 'base'
+    id 'net.researchgate.release' version '3.1.0'
+}
+
+release {
+    preTagCommitMessage = '[release] - pre tag commit: '
+    tagCommitMessage = '[release] - creating tag: '
+    newVersionCommitMessage = '[release] - new version commit: '
+    tagTemplate = 'v${version}'
+}
