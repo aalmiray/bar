@@ -1,0 +1,19 @@
+project:
+  name: tamboui
+  description: A Java library for building modern terminal user interfaces.
+  links:
+    homepage: https://github.com/tamboui/tamboui
+  authors:
+    - Cedric Champeau
+  license: APACHE-2.0
+  inceptionYear: 2025
+  stereotype: NONE
+
+release:
+  github:
+    overwrite: true
+    changelog:
+      formatted: ALWAYS
+      preset: conventional-commits
+      contributors:
+        format: '- {{contributorName}}{{#contributorUsernameAsLink}} ({{.}}){{/contributorUsernameAsLink}}'
