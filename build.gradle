@@ -1,3 +1,5 @@
+import io.github.simonhauck.release.version.api.Version
+
 plugins {
     id 'base'
     //id 'net.researchgate.release' version '3.1.0'
@@ -26,13 +28,20 @@ tasks.register('hello') {
 tasks.register('jreleaser', Exec) {
     workingDir '.'
 
-    environment = [JRELEASER_PROJECT_VERSION: version]
+    environment = [
+            JRELEASER_PROJECT_VERSION: version
+    ]
 
     //on windows:
     commandLine 'jreleaser.cmd', 'release'
 
     //on linux
     commandLine 'jreleaser', 'release'
+
+    doFirst {
+        v = Version.fromPropertiesFile(layout.projectDirectory.file("gradle.properties"))
+        environment.JRELEASER_PROJECT_VERSION = v
+    }
 }
 
 // afterReleaseBuild.dependsOn tasks.jreleaser
