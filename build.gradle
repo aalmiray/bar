@@ -1,13 +1,18 @@
 plugins {
     id 'base'
-    id 'net.researchgate.release' version '3.1.0'
+    //id 'net.researchgate.release' version '3.1.0'
+    id("io.github.simonhauck.release") version "1.5.1"
 }
 
 release {
-    preTagCommitMessage = '[release] - pre tag commit: '
-    tagCommitMessage = '[release] - creating tag: '
-    newVersionCommitMessage = '[release] - new version commit: '
-    tagTemplate = 'v${version}'
+    // preTagCommitMessage = '[release] - pre tag commit: '
+    // tagCommitMessage = '[release] - creating tag: '
+    // newVersionCommitMessage = '[release] - new version commit: '
+    // tagTemplate = 'v${version}'
+    versionPropertyFile.set(layout.projectDirectory.file("gradle.properties"))
+    releaseCommitMessage.set("chore: Releasing {version}")
+    postReleaseCommitAddFiles.set([file("gradle.properties")])
+    postReleaseCommitMessage.set("chore: Bump version to {version}")
 }
 
 tasks.register('hello') {
@@ -18,4 +23,5 @@ tasks.register('hello') {
     }
 }
 
-afterReleaseBuild.dependsOn tasks.hello
+// afterReleaseBuild.dependsOn tasks.hello
+pushRelease.finalizedBy tasks.hello
